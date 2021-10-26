@@ -1,0 +1,119 @@
+﻿@model X.PagedList.IPagedList<SitePet.Mvc.Models.PetViewModel>
+@using X.PagedList.Mvc.Core;
+@using X.PagedList.Mvc.Bootstrap4.Core
+@using SitePet.Mvc.Extensions;
+
+
+@{
+
+    ViewData["Title"] = "Pets";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a class="btn btn-info" asp-action="Create">Cadastrar Pets</a>
+</p>
+
+<h1 class="text-center mb-5" style="color: #0d8b8f">Conheça os animais</h1>
+
+<div class="btn-group-vertical">
+    <a class="btn btn-outline-primary" asp-area="" asp-controller="Pets" asp-action="IndexCaes">Apenas Cães</a>
+    <a class="btn btn-outline-primary" asp-area="" asp-controller="Pets" asp-action="IndexGatos">Apenas Gatos</a>
+</div>
+
+<div class="row mt-5">
+
+    @foreach (var item in Model)
+    {
+    <div class="col-md-4 mb-3 text-center">
+
+        <a asp-action="Details" asp-route-id="@item.Id" style="text-decoration: none">
+            <div class="">
+
+                <img class="img-fluid" src="~/Imagens/@item.Imagem" alt="@item.Imagem" style="width: 347px; height: 200px;" />
+
+                <br /><br />
+                @if (item.Genero == 1)
+                {
+                    <p style="font-size:23px;">Adote a @item.Nome</p>
+                }
+                else
+                {
+                    <p style="font-size:23px">Adote o @item.Nome</p>
+                }
+
+                <p style="font-family:Cambria, Cochin, Georgia, Times, Times New Roman, serif;color:#808080">@this.MostrarGenero(item.Genero)</p>
+
+                @if (item.Idade == 1)
+                {
+                    <p style="font-family:Cambria, Cochin, Georgia, Times, Times New Roman, serif;color:#808080">@item.Idade ano de idade !</p>
+                }
+                else
+                {
+                    <p style="font-family:Cambria, Cochin, Georgia, Times, Times New Roman, serif;color:#808080">@item.Idade anos de idade !</p>
+                }
+
+
+                @if (item.Tipo == 1)
+                {
+                    @if (item.Genero == 1)
+                    {
+                        <p style="color:hotpink"><i class="fas fa-cat"></i></p>
+                    }
+                    else
+                    {
+                        <p class="text-primary" style="color:#808080"><i class="fas fa-cat"></i></p>
+                    }
+                }
+                else
+                {
+                    @if (item.Genero == 1)
+                    {
+                        <p style="color:hotpink"><i class="fas fa-dog"></i></p>
+                    }
+                    else
+                    {
+                        <p class="text-primary" style="color:#808080"><i class="fas fa-dog"></i></p>
+                    }
+                }
+
+                <p style="font-family:Cambria, Cochin, Georgia, Times, Times New Roman, serif;color:#808080">Cadastrado : @item.DataCadastro </p>
+            </div>
+            <br /><br />
+
+            <p class="btn btn-success">Saiba mais de Mim</p>
+            
+        </a>
+
+        </div>
+
+    }
+
+
+
+</div>
+
+<div class="row">
+    <div class="col-md-8 justify-content-center">
+        @Html.PagedListPager(Model, pagina => Url.Action("Index", new { pagina }), Bootstrap4PagedListRenderOptions.Classic)
+    </div>
+    <div class="col-md-4">
+        <span class="text-muted">Listando registros de @Model.FirstItemOnPage a @Model.LastItemOnPage de um total de @Model.TotalItemCount</span>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        $("#ImagemUpload").change(function () {
+            $("#img_nome").text(this.files[0].name);
+            $("#img_nome")[0].style.display = 'block';
+        });
+        $("ImagemUpload").attr("data-val", "true");
+        $("ImagemUpload").attr("data-val-required", "Preencha o campo Imagem");
+
+    </script>
+}

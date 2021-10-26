@@ -1,0 +1,205 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Adote um Pet</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link href="~/font-awesome/css/all.css" rel="stylesheet" />
+    <link href="css/site.css" rel="stylesheet" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.js"></script>
+
+</head>
+
+<body style="background: #f1f6f8" class="m-0">
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-5 fixed-top">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Pets" asp-action="Index"><img src="~/imagens/logo novo.png" /></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end">
+                    <ul class="navbar-nav flex-grow-1">
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Pets" asp-action="Index">Home</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Sobre nós</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Pets" asp-action="IndexCaes">Cães</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Pets" asp-action="IndexGatos">Gatos</a>
+                        </li>
+
+                    </ul>
+                    <div>
+                        <partial name="_LoginPartial" />
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+    </header>
+
+
+    <div class="mt-5">
+        <img src="~/img/cães-diversos_476606794.jpg" style="height:320px; width:1900px" />
+    </div>
+
+    <section>
+        <div class="container">
+
+            <main role="main" class="pb-3" id="#conteudo">
+                @RenderBody()
+            </main>
+        </div>
+
+    </section>
+ 
+
+    <section style="background: white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4  d-none d-md-block">
+                    <img src="~/img/cachorro-com-fundo-transparente.png" class="img-fluid" />
+                </div>
+                <div class="col-md-8">
+                    <h1 class="text-center mb-5 mt-5" style="color:#0d8b8f">Tem alguma dúvida?</h1>
+
+
+                    <a class="btn text-left" id="a1" style="width: 100%; border-top: 1px solid red;font-size:22px; float:left; color:#5c5b5b; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+                        Como cadastrar um Pet ?<i class="fas fa-plus" style="color:chocolate; float:right"></i>
+
+                        <div class="mt-5" id="div1" style="display:none">
+                            <p style="font-size:20px; color:#000; font-family:'Times New Roman', Times, serif">
+                                Para cadastrar um pet o usuário deve estar logado, e somente o mesmo pode editar ou excluí-lo,
+                                fique atento com os dados ao preencher o pet para não cometer futuros erros e ter um ótimo teste!
+                            </p>
+                        </div>
+                    </a>
+
+                    <a class="btn text-left" id="a2" style="width: 100%; border-top: 1px solid red;font-size:22px; float:left;  color:#5c5b5b;  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+                        Como adotar um Pet ?<i class="fas fa-plus" style="color:chocolate; float:right"></i>
+
+                        <div class="mt-5" id="div2" style="display:none">
+                            <p style="font-size:20px; color:#000; font-family:'Times New Roman', Times, serif">
+                                O site é só um projeto para faculdade, no intuito de usar e aplicar todo  conteúdo aprendido para adotar um pet pode usar
+                                o site Instituto Luisa Mell ou no site amigonaosecompra onde esse mesmo site foi inspirado por eles.
+                            </p>
+                        </div>
+                    </a>
+
+                    <a class="btn text-left" id="a3" style="width: 100%; border-top: 1px solid red;font-size:22px; float:left;  color:#5c5b5b;  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+                        Falha na criação de uma conta  ?<i class="fas fa-plus" style="color:chocolate; float:right"></i>
+
+                        <div class="mt-5" id="div3" style="display:none">
+                            <p style="font-size:20px; color:#000; font-family:'Times New Roman', Times, serif">
+                                Se estiver dando erro na criação de uma conta, tente criar com um email diferente que está salvo
+                                no seu navegador caso o erro persistir entre em contato.
+                            </p>
+                        </div>
+                    </a>
+
+                    <a class="btn text-left mb-2" id="a4" style="width: 100%; border-top: 1px solid red;border-bottom:1px solid red ;font-size:22px; float:left;  color:#5c5b5b;  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+                        Qual o objetivo do site ?<i class="fas fa-plus" style="color:chocolate; float:right"></i>
+
+                        <div class="mt-5" id="div4" style="display:none">
+                            <p style="font-size:20px; color:#000; font-family:'Times New Roman', Times, serif">
+                                Site é apenas um projeto para faculdade onde o objetivo é criar um site
+                                institucional inspirado no Instituto Luisa Mell e no site amigonaosecompra !
+                            </p>
+                        </div>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <footer class="modal-footer" style="background: white; border-top: 25px solid #0d8b8f;">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-4">
+                    <a asp-area="" asp-controller="Pets" asp-action="Index"><img src="~/imagens/logo novo.png" /></a>
+                </div>
+                <div class="col-md-4 text-center">
+                    <p style="color: #0d8b8f">Site que serviram de inspiração</p>
+                    <a href="https://ilm.org.br/adote">Inst. Luisa Mell</a><br />
+                    <a href="https://www.amigonaosecompra.com.br/">Amigo Não se Compra</a>
+                </div>
+
+                <div class="col-md-4 text-right">
+                    <p style="color: #0d8b8f">Menu</p>
+                    <a asp-area="" asp-controller="Home" asp-action="Privacy">Sobre nós</a>
+                </div>
+            </div>
+            <hr />
+            <p class="text-center"> 2021 - Adote um Pet </p>
+
+
+
+        </div>
+    </footer>
+
+   
+    <script>
+        $(document).ready(function () {
+            $(".icon-edita").click(function () {
+                $(this).next().toggle("slow");
+            });
+        });
+
+        $(document).ready(function () {
+            $("#minhaDiv3").click(function () {
+                $(this).find(".boxEditor").toggle("slow");
+            });
+        });
+        
+
+        $(document).ready(() =>
+        {
+            $('#a1').on('click', () =>
+            {
+                $('#div1').slideToggle(0800);
+            })
+        })
+
+        $(document).ready(() => {
+            $('#a2').on('click', () => {
+                $('#div2').slideToggle(0800);
+            })
+        })
+
+        $(document).ready(() => {
+            $('#a3').on('click', () => {
+                $('#div3').slideToggle(0800);
+            })
+        })
+
+        $(document).ready(() => {
+            $('#a4').on('click', () => {
+                $('#div4').slideToggle(0800);
+            })
+        })
+    </script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>
+

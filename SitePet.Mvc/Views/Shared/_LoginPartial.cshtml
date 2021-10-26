@@ -1,0 +1,33 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+
+@if (User.Identity.IsAuthenticated)
+{
+
+    <div>
+        <p>Olá @User.Identity.Name</p>
+    </div>
+
+    <div class="dropdown d-inline-block">
+        <a href="#" class="icontext dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+
+        </a>
+        <div class="dropdown-menu dropdown-menu-left">
+            <a class="dropdown-item" asp-controller="Identidade" asp-action="Perfil">Meu Perfil</a>
+            <a class="dropdown-item" asp-controller="Identidade" asp-action="Logout">Sair</a>
+        </div>
+    </div>
+
+}
+else
+{
+    <div class="widget-header">
+        <small class="title text-muted">Bem vindo!</small>
+        <div>
+            <a asp-controller="Identidade" asp-action="Registro">Crie sua conta</a> <span> | </span>
+            <a asp-controller="Identidade" asp-action="Login"> Login</a>
+        </div>
+    </div>
+}

@@ -1,0 +1,35 @@
+﻿@model IEnumerable<SitePet.Mvc.Models.PetViewModel>
+
+
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-auto mb-3 text-center">
+
+            <div style="border: 1px solid black; box-shadow: -2px -5px 20px #000, 2px 6px 10px #808080;
+">
+                <a asp-action="Details" asp-route-id="@item.Id">
+                    <img src="~/Imagens/@item.Imagem" alt="@item.Imagem" style="width: 347px; height: 200px;" />
+                </a>
+                <br /><br />
+
+                <p style="font-size:23px">@item.Nome</p>
+
+
+
+
+
+            </div>
+            <br /><br />
+
+
+            <a asp-controller="Pets" asp-action="AdotarPet" class="btn btn-success" style="width:30%">Adotar</a>
+
+
+        </div>
+
+
+    }
+
+</div>

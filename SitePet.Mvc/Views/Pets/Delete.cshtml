@@ -1,0 +1,83 @@
+﻿@model SitePet.Mvc.Models.PetViewModel
+
+@using SitePet.Mvc.Extensions;
+
+@{
+    ViewData["Title"] = "Deletar o(a) " + Model.Nome;
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<h3 class="alert alert-danger">Tem certeza que deseja deletar esse Pet ? <i class="far fa-question-circle"></i> </h3>
+<div class="row">
+    <div class="col-md-4">
+        <img class="img-fluid border" src="~/imagens/@Model.Imagem" alt="@Model.Imagem" style="width: 380px; height: 328px" />
+    </div>
+
+    <div class="col-md-2">
+
+    </div>
+    <div class="col-md-4">
+        <dl>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Nome)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Nome)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Raca)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Raca)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Tipo)
+            </dt>
+            <dd class="col-sm-10">
+                @this.MostrarTipo(Model.Tipo)
+            </dd>
+
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Genero)
+            </dt>
+            <dd class="col-sm-10">
+                @this.MostrarGenero(Model.Genero)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Idade)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Idade)
+            </dd>
+
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.DataCadastro)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.DataCadastro)
+            </dd>
+
+
+
+
+
+        </dl>
+        @if ((Model.Usuario == User.Identity.Name && User.Identity.IsAuthenticated) || (User.Identity.Name == "admin@gmail.com" && User.Identity.IsAuthenticated))
+        {
+            <div class="ml-2">
+
+                <form asp-action="Delete">
+                    <input type="hidden" asp-for="Id" />
+                    <input type="submit" value="Excluir" class="btn btn-danger" />
+                </form>
+
+
+
+            </div><br />
+        }
+        <a class="btn btn-info ml-2" asp-action="Index">Voltar</a>
+
+    </div>
+
+</div>

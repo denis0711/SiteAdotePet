@@ -1,0 +1,81 @@
+﻿@model IEnumerable<SitePet.Mvc.Models.PetViewModel>
+@using SitePet.Mvc.Extensions;
+
+
+@{ 
+    ViewData["Title"] = "Meu Perfil ";
+    ViewData["User"] = User.Identity.Name;
+}
+
+<div class="alert alert-success">
+    <h1>Meu-Perfil</h1>
+    <p>Animais cadastrado pelo <b>@ViewData["User"]</b></p>
+    <hr />
+</div>
+
+<div><hr /></div>
+
+<table class="table table-hover">
+    <thead class="bg-info">
+        <tr>
+
+            <th>
+
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Raca)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataCadastro)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Idade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Genero)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tipo)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr class="bg-dark text-white">
+            <td>
+                <img class="img-fluid" src="~/Imagens/@item.Imagem" alt="@item.Imagem" style="width: 120px; height: 120px;" />
+            </td>
+
+            <td class="align-middle">
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td class="align-middle">
+                @Html.DisplayFor(modelItem => item.Raca)
+            </td>
+            <td class="align-middle">
+                @Html.DisplayFor(modelItem => item.DataCadastro)
+            </td>
+            <td class="align-middle">
+                @Html.DisplayFor(modelItem => item.Idade)
+            </td>
+            <td class="align-middle">
+                @this.MostrarGenero(item.Genero)
+            </td>
+
+            <td class="align-middle">
+                @this.MostrarTipo(item.Tipo)
+            </td>
+
+            <td class="align-middle">
+                <a class="btn btn-info" asp-controller="Pets" asp-action="Details" asp-route-id="@item.Id"><spam class="fa fa-search"></spam></a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

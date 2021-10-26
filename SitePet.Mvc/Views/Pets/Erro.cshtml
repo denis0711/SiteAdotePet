@@ -1,0 +1,21 @@
+﻿@model SitePet.Mvc.Models.PetViewModel
+
+@{
+    ViewData["Title"] = "Erro de permissão";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+
+
+
+<hr />
+
+<div>
+    <h1 class="alert-danger">Você não tem permissão para fazer isto!</h1>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+}

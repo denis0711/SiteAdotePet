@@ -1,0 +1,104 @@
+﻿@model SitePet.Mvc.Models.PetViewModel
+@using System.Collections.Generic;
+@using SitePet.Mvc.Models;
+@using Microsoft.AspNetCore.Mvc.Razor;
+@using SitePet.Mvc.Extensions;
+
+    @{
+
+        ViewData["Title"] = "Detalhes do(a) " + Model.Nome;
+
+
+    }
+
+    <h1 class="text-center" style="padding-top: 50px">@ViewData["Title"]</h1>
+
+    <hr />
+    <div class="row">
+        <div class="col-md-7">
+            <img class="rounded img-fluid" src="~/imagens/@Model.Imagem" alt="@Model.Imagem" style="width: 630px; height: 628px;" />
+        </div>
+
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-4">
+            <dl>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Nome)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Nome)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Raca)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Raca)
+                </dd>
+
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Tipo)
+                </dt>
+                <dd class="col-sm-10">
+                    @this.MostrarTipo(Model.Tipo)
+                </dd>
+
+
+
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Genero)
+                </dt>
+                <dd class="col-sm-10">
+                    @this.MostrarGenero(Model.Genero)
+                </dd>
+
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Idade)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Idade)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.DataCadastro)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.DataCadastro)
+                </dd>
+
+
+
+
+
+            </dl>
+            <div class="ml-2">
+                @if ((Model.Usuario == User.Identity.Name && User.Identity.IsAuthenticated) || (User.Identity.Name == "admin@gmail.com" && User.Identity.IsAuthenticated))
+                {
+                    <a class="btn btn-info" asp-action="Edit" asp-route-id="@Model.Id">Editar</a>
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@Model.Id">Excluir</a>
+                }
+                else
+                {
+                    <div>
+                        <p class="alert alert-danger"><i class="fas fa-exclamation-triangle"></i> - Só o usuario que registrou o Pet tem permissão de editá-lo ou excluí-lo</p>
+                    </div>
+                   
+                }
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+<div class="container mt-5">
+    <div class="alert alert-success">
+        <h2>Quero realmente adotar um Pet <i class="fas fa-star"></i></h2>
+        <a href="https://ilm.org.br/adote">Inst. Luisa Mell</a><br />
+        <a href="https://www.amigonaosecompra.com.br/">Amigo Não se Compra</a>
+
+    </div>
+</div>

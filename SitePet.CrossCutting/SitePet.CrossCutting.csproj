@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.11" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SitePet.Domain\SitePet.Domain.csproj" />
+    <ProjectReference Include="..\SitePet.Infrastructure\SitePet.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>
