@@ -19,13 +19,12 @@ namespace SitePet.CrossCutting.IoC
             (this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<MeuDbContext>
-                (o => o.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+                (o => o.UseSqlServer(configuration.GetConnectionString("SitePetMvcContext")));
 
             services.AddScoped<IPetRepository, PetRepository>();
          
 
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-             .AddEntityFrameworkStores<MeuDbContext>();
+           
 
             return services;
         }

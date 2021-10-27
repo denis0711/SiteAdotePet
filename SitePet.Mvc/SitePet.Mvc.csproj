@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
+    <UserSecretsId>3dbe391c-cd4e-4038-b2dd-3289fc5f576d</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

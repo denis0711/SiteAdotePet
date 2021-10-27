@@ -18,6 +18,7 @@ namespace SitePet.Mvc.Controllers
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ILogger<IdentidadeController> _logger;
         private readonly IPetService _petService;
+        
 
         public IdentidadeController(UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager,
@@ -54,12 +55,28 @@ namespace SitePet.Mvc.Controllers
             if (result.Succeeded)
             {
                 return RedirectToAction("Login", "Identidade");
+            }else
+            {
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+
+                }
+
+                return View(usuarioRegistro);
             }
 
+           
+          
+           
+               
+                
+        
+
+            
+      
 
 
-
-            return RedirectToAction("Index", "Pets");
         }
 
         [HttpGet]
@@ -121,7 +138,7 @@ namespace SitePet.Mvc.Controllers
         [Route("sair")]
         public async Task<IActionResult> Logout()
         {
-            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Pets");
         }
 
